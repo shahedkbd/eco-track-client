@@ -6,7 +6,7 @@ import { updateProfile } from "firebase/auth";
 const Register = () => {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
-    const {registerWithEmail, user, setUser} = use(AuthContext)
+    const {registerWithEmail, signinWithGoogle, setUser} = use(AuthContext)
 
     const navigate = useNavigate()
 
@@ -48,6 +48,23 @@ const Register = () => {
             
         })
 
+    }
+
+    const handleGoogleLogin =() =>{
+        signinWithGoogle()
+        .then(res=>{
+            const user = res.user
+            console.log(user);
+            
+            setUser(user)
+            setSuccess(true)
+            navigate("/")
+        })
+        .catch(error=>{
+            const errorMessage = error.message
+            setError(errorMessage)
+            console.log(errorMessage);
+        })
     }
   return (
     <div className="hero bg-[#7a9352] min-h-screen">
@@ -97,7 +114,7 @@ const Register = () => {
           }
 
           {/* Google */}
-          <button className="btn bg-white text-black border-[#e5e5e5]">
+          <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5]">
             <svg
               aria-label="Google logo"
               width="16"
