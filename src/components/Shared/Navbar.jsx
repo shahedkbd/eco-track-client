@@ -3,10 +3,16 @@ import { Link, NavLink } from "react-router";
 import Logo from "../../assets/EcoTrack-Logo.png"
 import { DiEnvato } from "react-icons/di";
 import { AuthContext } from "../../Context/AuthContext";
+import { CgProfile } from "react-icons/cg";
 
 
 const Navbar = () => {
-  const {user} = use(AuthContext)
+  const {user, setUser, logout} = use(AuthContext)
+  const handleLogout = ()=>{
+    logout()
+    .then()
+    .catch()
+  }
 
   const links = (
     <>
@@ -57,8 +63,17 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-3">
-        <Link className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white group" to="/login">Login <DiEnvato className="text-[#7a9352] group-hover:text-white transition-colors duration-300 " /></Link>
-        <Link className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white group" to="/register">Register <DiEnvato className="text-[#7a9352] group-hover:text-white transition-colors duration-300 " /></Link>
+        
+
+        {
+          user ? <>
+          {user ? <img className="size-8 object-cover border-2 border-[#7a9352] rounded-full" src={user.photoURL}/> : <CgProfile className="size-8" /> }
+          <button onClick={handleLogout}>Logout</button>
+          </> :<> <Link className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white group" to="/login">Login <DiEnvato className="text-[#7a9352] group-hover:text-white transition-colors duration-300 " /></Link>
+        <Link className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white group" to="/register">Register <DiEnvato className="text-[#7a9352] group-hover:text-white transition-colors duration-300 " /></Link></>
+        }
+
+        
         
       </div>
     </div>
