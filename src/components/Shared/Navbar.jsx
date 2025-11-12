@@ -78,20 +78,20 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex="-1"
-                  className="dropdown-content  bg-base-100 rounded-box z-1 w-40 p-2 right-0 shadow-sm"
+                  className="dropdown-content  bg-base-100 rounded-box z-2 w-40 p-2 right-0 shadow-sm"
                 >
-                  <Link
+                  <NavLink
                     className="w-full btn rounded-4xl btn-ghost hover:bg-[#7a9352] hover:text-white"
                     to="/profile"
                   >
-                    <a>Profile</a>
-                  </Link>
-                  <Link
+                    Profile
+                  </NavLink>
+                  <NavLink
                     className="w-full btn rounded-4xl btn-ghost hover:bg-[#7a9352] hover:text-white"
                     to="/my-activities"
                   >
-                    <a>My Activities</a>
-                  </Link>
+                    My Activities
+                  </NavLink>
                   <button
                     className="btn w-full poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white"
                     onClick={handleLogout}

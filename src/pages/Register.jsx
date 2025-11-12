@@ -21,8 +21,8 @@ const Register = () => {
         console.log(name, email, photourl, password);
         
         registerWithEmail(email, password)
-        .then(res=>{
-            const user = res.user
+        .then(result=>{
+            const user = result.user
             console.log(user);
             
             setUser(user)
@@ -39,6 +39,19 @@ const Register = () => {
             .then(()=>{})
             .catch()
 
+            const newUser = {name, email, photourl}
+
+            fetch("http://localhost:3000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json"
+              },
+              body: JSON.stringify(newUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data after user save', data)
+            })
 
         })
         .catch(error=>{
@@ -52,13 +65,31 @@ const Register = () => {
 
     const handleGoogleLogin =() =>{
         signinWithGoogle()
-        .then(res=>{
-            const user = res.user
+        .then(result=>{
+            const user = result.user
             console.log(user);
             
             setUser(user)
             setSuccess(true)
             navigate("/")
+
+            const newUser = {
+              name: result.user.displayName,
+              email: result.user.email,
+              image: result.user.photoURL
+            }
+
+            fetch("http://localhost:3000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json"
+              },
+              body: JSON.stringify(newUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data after user save', data)
+            })
         })
         .catch(error=>{
             const errorMessage = error.message
