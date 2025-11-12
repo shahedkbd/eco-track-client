@@ -2,7 +2,7 @@ import React from "react";
 
 const WhyGoGreen = () => {
   return (
-    <div className="bg-gray-100 py-15">
+    <div className="bg-gray-100 py-15 pt-20">
       <h2 className="text-center text-4xl pb-5 poppins font-bold text-[#7a9352] hover:text-[#628727]">
         Why Go Green?
       </h2>

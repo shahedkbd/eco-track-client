@@ -25,7 +25,7 @@ export default function HeroBanner() {
       >
         <SwiperSlide>
           <div
-            className="relative w-full h-[500px] bg-cover bg-center bg-no-repeat rounded-2xl overflow-hidden"
+            className="relative w-full h-[500px] bg-cover bg-center bg-no-repeat  overflow-hidden"
             style={{
               "backgroundImage":
                 "url('https://i.ibb.co.com/qQpYxdy/group-activists-friends-collecting-plastic-waste-beach-environmental-conservation.jpg')",
@@ -37,7 +37,7 @@ export default function HeroBanner() {
             {/* Content on top */}
             <div className="relative z-10 flex items-center justify-center h-full text-white font-bold">
               <div className="text-center w-[70%] space-y-3">
-                <h4 className="text-2xl roboto">💧 Small steps, cleaner oceans</h4>
+                <h4 className="text-2xl roboto">💧 SMALL STEPS, CLEANER OCEANS</h4>
                 <h2 className="text-5xl poppins">Join the Plastic-Free Week!</h2>
                 <p className="font-normal text-xl roboto">
                   Reduce single-use plastic for just one week — and see how
@@ -52,7 +52,7 @@ export default function HeroBanner() {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="relative w-full h-[500px] bg-cover bg-center bg-no-repeat rounded-2xl overflow-hidden"
+            className="relative w-full h-[500px] bg-cover bg-center bg-no-repeat  overflow-hidden"
             style={{
               "backgroundImage":
                 "url('https://i.ibb.co.com/F4qDBQzQ/man-woman-riding-their-bikes.jpg')",
@@ -64,7 +64,7 @@ export default function HeroBanner() {
             {/* Content on top */}
             <div className="relative z-10 flex items-center justify-center h-full text-white font-bold">
               <div className="text-center w-[70%] space-y-3">
-                <h4 className="text-2xl roboto">🚴 Move smart. Live clean</h4>
+                <h4 className="text-2xl roboto">🚴 MOVE SMART. LIVE CLEAN</h4>
                 <h2 className="text-5xl poppins">Pedal, Walk, or Share — Go Green on the Move!</h2>
                 <p className="font-normal text-xl roboto">
                   Cut down your carbon footprint by choosing sustainable transport — cycling, walking, or carpooling. Every kilometer you travel clean helps save CO₂ and keeps the air fresher for everyone
@@ -76,7 +76,7 @@ export default function HeroBanner() {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="relative w-full h-[500px] bg-cover bg-center bg-no-repeat rounded-2xl overflow-hidden"
+            className="relative w-full h-[500px] bg-cover bg-center bg-no-repeat overflow-hidden"
             style={{
               "backgroundImage":
                 "url('https://i.ibb.co.com/prWPHHjZ/daniel-boberg-a-Att-L6-YSa0s-unsplash.jpg')",
@@ -88,7 +88,7 @@ export default function HeroBanner() {
             {/* Content on top */}
             <div className="relative z-10 flex items-center justify-center h-full text-white font-bold">
               <div className="text-center w-[70%] space-y-3">
-                <h4 className="text-2xl roboto">💡 Less waste, more light</h4>
+                <h4 className="text-2xl roboto">💡 LESS WASTE, MORE LIGHT</h4>
                 <h2 className="text-5xl poppins">Save Energy, Power the Future!</h2>
                 <p className="font-normal text-xl roboto">
                   Turn off lights, unplug idle devices, and switch to LEDs — track your energy savings and see your progress in real-time. Let’s light the world responsibly

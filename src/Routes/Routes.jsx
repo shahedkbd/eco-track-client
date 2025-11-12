@@ -7,6 +7,7 @@ import Profile from "../pages/Profile";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import ChallengeDetails from "../pages/ChallengeDetails";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ export const router = createBrowserRouter([
       {
         path: "/challenges",
         Component: Challenges,
+      },
+      {
+        path: "/challenges/:id",
+        loader: ({params})=> fetch(`http://localhost:3000/challenges/${params.id}`),
+        Component: ChallengeDetails
       },
       {
         path: "/my-activities",
