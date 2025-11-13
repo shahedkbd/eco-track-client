@@ -5,8 +5,6 @@ const PromiseData = fetch("http://localhost:3000/statistics").then((res) =>
 );
 const LiveStatistics = () => {
   const data = use(PromiseData);
-  console.log(data[0].totalCO2Saved);
-
   return (
     <div className="relative z-10">
       <div className="rounded-2xl grid grid-cols-4 text-center bg-[#7a9352] absolute -top-20 left-1/2 transform -translate-x-1/2 w-[90%] gap-5 px-5">
