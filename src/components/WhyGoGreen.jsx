@@ -6,7 +6,7 @@ const WhyGoGreen = () => {
       <h2 className="text-center text-4xl pb-5 poppins font-bold text-[#7a9352] hover:text-[#628727]">
         Why Go Green?
       </h2>
-      <div className="roboto font-bold w-11/12 text-center mx-auto">
+      <div className="roboto font-bold w-11/12 py-3 text-center mx-auto">
         <p className="my-2">
           Living sustainably isn’t just about saving the planet — it’s about
           improving our quality of life.

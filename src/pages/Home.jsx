@@ -4,6 +4,7 @@ import HowItWorks from '../components/HowItWorks';
 import HeroBanner from '../components/HeroBanner';
 import LiveStatistics from '../components/LiveStatistics';
 import CommunityTips from '../components/CommunityTips';
+import UpcomingEvent from "../components/UpcomingEvent";
 
 const Home = () => {
     return (
@@ -12,7 +13,9 @@ const Home = () => {
             <LiveStatistics></LiveStatistics>
             <WhyGoGreen></WhyGoGreen>
             <CommunityTips></CommunityTips>
+            <UpcomingEvent></UpcomingEvent>
             <HowItWorks></HowItWorks>
+            
         </div>
     );
 };

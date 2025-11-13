@@ -10,7 +10,7 @@ const TipsDataCard = ({ tipsData }) => {
     <div className="card bg-base-100 shadow-sm">
       <div className="card-body">
         <div className="flex justify-between">
-            <p>{category}</p>
+            <p className="badge text-xs badge-dash justify-start max-w-fit">{category}</p>
             <div className="flex items-center gap-1">
                 <BiUpvote />
                 <p><span>{upvotes}</span></p>
@@ -20,8 +20,8 @@ const TipsDataCard = ({ tipsData }) => {
         <p className="h-35">{content}</p>
         <p className="text-xs font-bold text-right">{createdAt}</p>
         <div className="divider"></div>
-        <p className="font-bold">{author}</p>
         <p className="flex items-center gap-2 font-bold"><CgProfile /> {authorName}</p>
+        <p className="font-bold">{author}</p>
         
         
       </div>
