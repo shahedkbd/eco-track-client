@@ -18,6 +18,9 @@ const ChallengeDetails = () => {
     metric,
   } = data;
 
+  
+  
+
   return (
     <div className="card mx-30 lg:card-side bg-base-100 shadow-sm my-10">
       <figure>

@@ -30,6 +30,13 @@ const Navbar = () => {
           </li>
         </NavLink>
       )}
+      {user && (
+        <NavLink to="/challenge/add-challenge">
+          <li className="m-3 text-xl font-bold poppins hover:text-[#7a9352] hover:scale-110 duration-300">
+            Add Challenge
+          </li>
+        </NavLink>
+      )}
     </>
   );
   return (

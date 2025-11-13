@@ -15,7 +15,7 @@ const ChallengeCard = ({ challenge }) => {
           <div className="badge badge-outline">{category}</div>
         </div>
         <Link to={`/challenges/${_id}`} className="btn w-full poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white">
-          Join
+          Challenge Detail
         </Link>
       </div>
     </div>
