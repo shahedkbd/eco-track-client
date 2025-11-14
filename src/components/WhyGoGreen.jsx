@@ -2,11 +2,11 @@ import React from "react";
 
 const WhyGoGreen = () => {
   return (
-    <div className="bg-gray-100 py-15 pt-20">
-      <h2 className="text-center text-4xl pb-5 poppins font-bold text-[#7a9352] hover:text-[#628727]">
+    <div className="bg-[#262626] py-15">
+      <h2 className="text-center text-4xl pb-5 poppins font-bold text-[#d6efae] hover:text-[#85ad43]">
         Why Go Green?
       </h2>
-      <div className="roboto font-bold w-11/12 py-3 text-center mx-auto">
+      <div className="roboto font-bold w-11/12 py-3 text-center mx-auto text-[#fff5ed]">
         <p className="my-2">
           Living sustainably isn’t just about saving the planet — it’s about
           improving our quality of life.

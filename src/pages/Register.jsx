@@ -1,6 +1,6 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
@@ -135,7 +135,7 @@ const Register = () => {
                 placeholder="Password"
               />
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <a className="link link-hover roboto">Forgot password?</a>
               </div>
               <button className="btn btn-neutral mt-4">Register</button>
             </fieldset>
@@ -175,6 +175,7 @@ const Register = () => {
             </svg>
             Login with Google
           </button>
+          <p className="roboto">Already have an account? <span className="text-[#0049be] font-bold "><Link to="/login">Login</Link></span></p>
         </div>
       </div>
     </div>

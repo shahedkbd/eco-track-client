@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const Login = () => {
     const {signinWithEmail, setUser, signinWithGoogle} = use(AuthContext)
@@ -112,6 +112,7 @@ const Login = () => {
             </svg>
             Login with Google
           </button>
+          <p className="roboto">Don't have an account? <span className="text-[#0049be] font-bold "><Link to="/register">Register</Link></span></p>
         </div>
       </div>
     </div>
