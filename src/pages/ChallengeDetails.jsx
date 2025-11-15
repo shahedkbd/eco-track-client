@@ -1,6 +1,8 @@
 import React, { use, useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import PrivateRoute from "../Routes/PrivateRoute";
+import toast from "react-hot-toast";
 
 const ChallengeDetails = () => {
   const { user } = use(AuthContext);
@@ -24,7 +26,11 @@ const ChallengeDetails = () => {
     metric,
   } = data;
 
+  
+
+
   const handleJoin = async () => {
+    
     setJoined(true);
 
     const userData = {
@@ -45,7 +51,7 @@ const ChallengeDetails = () => {
     const result = await res.json();
 
     if (result.success) {
-      alert("You have successfully joined!");
+      toast("You have successfully joined!");
 
       // 🔥 Update UI instantly
       setCurrentParticipants((prev) => prev + 1);
@@ -96,7 +102,7 @@ const ChallengeDetails = () => {
                   <span className="font-bold">Participants:</span> {currentParticipants}
                 </td>
                 <td>
-                  <button
+                  {user ? <button
                     disabled={joined}
                     onClick={handleJoin}
                     className={`btn rounded-2xl ${
@@ -106,7 +112,9 @@ const ChallengeDetails = () => {
                     }`}
                   >
                     {joined ? "Joined" : "Join"}
-                  </button>
+                  </button>: <Link  className="btn rounded-2xl bg-gray-400 w-full text-white" to="/login" state={{ from: `/challenges/${_id}` }}>Login to join the challenge!</Link>}
+                  
+                    
                 </td>
               </tr>
 

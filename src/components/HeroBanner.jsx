@@ -10,6 +10,7 @@ import "swiper/css/autoplay";
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Link } from "react-router";
 
 export default function HeroBanner() {
   return (
@@ -45,7 +46,7 @@ export default function HeroBanner() {
                   has already reduced over 1,200 kg of plastic waste. Are you
                   ready to join the movement?
                 </p>
-                <button className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white">View Challenge</button>
+                <Link className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white"to="/challenges/6914d57068b326dddb3ef9af">View Challenge</Link>
               </div>
             </div>
           </div>
@@ -69,7 +70,7 @@ export default function HeroBanner() {
                 <p className="font-normal text-xl roboto">
                   Cut down your carbon footprint by choosing sustainable transport — cycling, walking, or carpooling. Every kilometer you travel clean helps save CO₂ and keeps the air fresher for everyone
                 </p>
-                <button className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white">Join Now</button>
+                <Link className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white" to="/challenges/6914d60868b326dddb3ef9b0">Join Now</Link>
               </div>
             </div>
           </div>
@@ -93,7 +94,7 @@ export default function HeroBanner() {
                 <p className="font-normal text-xl roboto">
                   Turn off lights, unplug idle devices, and switch to LEDs — track your energy savings and see your progress in real-time. Let’s light the world responsibly
                 </p>
-                <button className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white">Explore Challenge</button>
+                <Link className="btn poppins bg-white rounded-4xl text-[#7a9352] hover:bg-[#7a9352] hover:text-white" to="challenges/6914d63768b326dddb3ef9b1">Explore Challenge</Link>
               </div>
             </div>
           </div>

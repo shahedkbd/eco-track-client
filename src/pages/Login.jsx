@@ -1,13 +1,15 @@
 import React, { use, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-    const {signinWithEmail, setUser, signinWithGoogle} = use(AuthContext)
+    const {signinWithEmail, setUser, signinWithGoogle, setLoading} = use(AuthContext)
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     const handleGoogleLogin =() =>{
         signinWithGoogle()
@@ -31,6 +33,8 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
+        const from = location.state?.from || "/"; // fallback
+
         signinWithEmail(email, password)
         .then(res=>{
             const user = res.user
@@ -38,13 +42,15 @@ const Login = () => {
             
             setUser(user)
             setSuccess(true)
-            navigate("/")
+            navigate(from, { replace: true });
             e.target.reset()
+            toast("Login Successful")
         })
         .catch(error=>{
             const errorMessage = error.message
+            setLoading(false)
             setError(errorMessage)
-            console.log(errorMessage);
+            toast(errorMessage)
         })
 
     }
@@ -72,7 +78,7 @@ const Login = () => {
                 placeholder="Password"
               />
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <Link to="/forget-password" className="link link-hover">Forgot password?</Link>
               </div>
               <button className="btn btn-neutral mt-4">Login</button>
             </fieldset>

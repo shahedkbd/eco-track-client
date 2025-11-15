@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Link } from "react-router";
+import toast from "react-hot-toast";
 
 const MyActivities = () => {
   const [activities, setActivities] = useState([]);
@@ -39,9 +40,9 @@ const MyActivities = () => {
       .then((data) => {
         if (data) {
           setActivities((prev) => prev.filter((a) => a._id !== _id));
-          alert("Activity removed successfully!");
+          toast("Activity removed successfully!");
         } else {
-          alert(data.message || "Something went wrong");
+          toast(data.message || "Something went wrong");
         }
       });
   };
@@ -73,7 +74,7 @@ const MyActivities = () => {
               <th>Joined At</th>
               <th>Status</th>
               <th>Action</th>
-              <th></th>
+              <th>Challenge Progress</th>
             </tr>
           </thead>
 
@@ -126,7 +127,7 @@ const MyActivities = () => {
                         onClick={() => handleCancel(activity._id)}
                         className="btn bg-red-500 text-white btn-xs"
                       >
-                        Cancel
+                        Remove
                       </button>
                     </td>
 

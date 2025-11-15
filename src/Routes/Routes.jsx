@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import ChallengeDetails from "../pages/ChallengeDetails";
 import AddNewChallenge from "../pages/AddNewChallenge";
+import ForgetPassword from "../pages/ForgetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/challenges",
+        loader: ()=>fetch("http://localhost:3000/challenges"),
         Component: Challenges,
       },
       {
@@ -61,6 +63,10 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+      {
+        path: "/forget-password",
+        Component: ForgetPassword
+      }
     ],
   },
 ]);

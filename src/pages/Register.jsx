@@ -2,101 +2,121 @@ import React, { use, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Link, useNavigate } from "react-router";
 import { updateProfile } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Register = () => {
-    const [error, setError] = useState("")
-    const [success, setSuccess] = useState(false)
-    const {registerWithEmail, signinWithGoogle, setUser} = use(AuthContext)
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-    const navigate = useNavigate()
+  const { registerWithEmail, signinWithGoogle, setUser, setLoading } =
+    use(AuthContext);
 
-    const handleRegister=(e)=>{
-        e.preventDefault()
+  const navigate = useNavigate();
 
-        const name = e.target.name.value;
-        const email = e.target.email.value;
-        const photourl = e.target.photourl.value;
-        const password = e.target.password.value;
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-        console.log(name, email, photourl, password);
-        
-        registerWithEmail(email, password)
-        .then(result=>{
-            const user = result.user
-            console.log(user);
-            
-            setUser(user)
-            setSuccess(true)
-            navigate("/")
-            e.target.reset()
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const photourl = e.target.photourl.value;
+    const password = e.target.password.value;
 
-            const profile = {
-                displayName: name,
-                photoURL: photourl
-            }
+    console.log(name, email, photourl, password);
 
-            updateProfile(user, profile)
-            .then(()=>{})
-            .catch()
+    const passwordPattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
 
-            const newUser = {name, email, photourl}
-
-            fetch("http://localhost:3000/users", {
-              method: "POST",
-              headers: {
-                "content-type": "application/json"
-              },
-              body: JSON.stringify(newUser)
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log('data after user save', data)
-            })
-
-        })
-        .catch(error=>{
-            const errorMessage = error.message
-            setError(errorMessage)
-            console.log(errorMessage);
-            
-        })
-
+    if (!passwordPattern.test(password)) {
+      setError(
+        "Password must be at least 6 characters long, and include at least one uppercase, one lowercase, and one special character."
+      );
+      return;
     }
 
-    const handleGoogleLogin =() =>{
-        signinWithGoogle()
-        .then(result=>{
-            const user = result.user
-            console.log(user);
-            
-            setUser(user)
-            setSuccess(true)
-            navigate("/")
+    registerWithEmail(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
 
-            const newUser = {
-              name: result.user.displayName,
-              email: result.user.email,
-              image: result.user.photoURL
-            }
+        setUser(user);
+        setSuccess(true);
+        navigate("/");
+        toast("Account Creation Successful");
+        e.target.reset();
 
-            fetch("http://localhost:3000/users", {
-              method: "POST",
-              headers: {
-                "content-type": "application/json"
-              },
-              body: JSON.stringify(newUser)
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log('data after user save', data)
-            })
+        const profile = {
+          displayName: name,
+          photoURL: photourl,
+        };
+
+        updateProfile(user, profile)
+          .then(() => {})
+          .catch();
+
+        const newUser = { name, email, photourl };
+
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
         })
-        .catch(error=>{
-            const errorMessage = error.message
-            setError(errorMessage)
-            console.log(errorMessage);
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data after user save", data);
+          });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+        toast(errorMessage);
+        setLoading(false);
+        console.log(errorMessage);
+      });
+  };
+
+  const handleTogglePasswordShow = (event) => {
+    event.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
+  const handleGoogleLogin = () => {
+    signinWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        setUser(user);
+        setSuccess(true);
+        navigate("/");
+
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
         })
-    }
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data after user save", data);
+          });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+        console.log(errorMessage);
+      });
+  };
   return (
     <div className="hero bg-[#7a9352] min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -128,24 +148,33 @@ const Register = () => {
                 placeholder="Photo Url"
               />
               <label className="label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="input"
-                placeholder="Password"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="input"
+                  placeholder="Password"
+                />
+                <button
+                  onClick={handleTogglePasswordShow}
+                  className="btn btn-xs top-2 right-5 absolute"
+                >
+                  {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+                </button>
+              </div>
               <div>
                 <a className="link link-hover roboto">Forgot password?</a>
               </div>
               <button className="btn btn-neutral mt-4">Register</button>
             </fieldset>
           </form>
-          {
-            error && <p className="text-red-500 text-xs">{error}</p>
-          }
+          {error && <p className="text-red-500 text-xs">{error}</p>}
 
           {/* Google */}
-          <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5]">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn bg-white text-black border-[#e5e5e5]"
+          >
             <svg
               aria-label="Google logo"
               width="16"
@@ -175,7 +204,12 @@ const Register = () => {
             </svg>
             Login with Google
           </button>
-          <p className="roboto">Already have an account? <span className="text-[#0049be] font-bold "><Link to="/login">Login</Link></span></p>
+          <p className="roboto">
+            Already have an account?{" "}
+            <span className="text-[#0049be] font-bold ">
+              <Link to="/login">Login</Link>
+            </span>
+          </p>
         </div>
       </div>
     </div>
