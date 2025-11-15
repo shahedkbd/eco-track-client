@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import ChallengeDetails from "../pages/ChallengeDetails";
 import AddNewChallenge from "../pages/AddNewChallenge";
 import ForgetPassword from "../pages/ForgetPassword";
+import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -23,21 +24,37 @@ export const router = createBrowserRouter([
       },
       {
         path: "/challenges",
-        loader: ()=>fetch("http://localhost:3000/challenges"),
+        loader: () => fetch("http://localhost:3000/challenges"),
         Component: Challenges,
       },
+      // {
+      //   path: "/challenges/:id",
+      //   loader: ({ params }) =>
+      //     fetch(`http://localhost:3000/challenges/${params.id}`),
+      //   Component: ChallengeDetails,
+      //   errorElement: NotFound
+      // },
       {
-        path: "/challenges/:id",
-        loader: ({params})=> fetch(`http://localhost:3000/challenges/${params.id}`),
-        Component: ChallengeDetails
-      },
+  path: "/challenges/:id",
+  loader: async ({ params }) => {
+    const res = await fetch(`http://localhost:3000/challenges/${params.id}`);
+
+    if (!res.ok) {
+      throw new Response("Not Found", { status: 404 });
+    }
+
+    return res.json();
+  },
+  element: <ChallengeDetails />,
+  errorElement: <NotFound />
+},
       {
         path: "/challenge/add-challenge",
         element: (
           <PrivateRoute>
             <AddNewChallenge></AddNewChallenge>
           </PrivateRoute>
-        )
+        ),
       },
       {
         path: "/my-activities",
@@ -65,8 +82,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/forget-password",
-        Component: ForgetPassword
-      }
+        Component: ForgetPassword,
+      },
+      {
+        path: "*",
+        Component: NotFound
+      },
     ],
   },
 ]);

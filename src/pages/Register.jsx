@@ -162,9 +162,6 @@ const Register = () => {
                   {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
                 </button>
               </div>
-              <div>
-                <a className="link link-hover roboto">Forgot password?</a>
-              </div>
               <button className="btn btn-neutral mt-4">Register</button>
             </fieldset>
           </form>

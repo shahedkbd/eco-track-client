@@ -1,12 +1,14 @@
 import React, { use, useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useRouteLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
-import PrivateRoute from "../Routes/PrivateRoute";
 import toast from "react-hot-toast";
+import NotFound from "./NotFound";
 
 const ChallengeDetails = () => {
   const { user } = use(AuthContext);
   const data = useLoaderData();
+
+  
 
   const [joined, setJoined] = useState(false);
   const [currentParticipants, setCurrentParticipants] = useState(data.participants);
@@ -25,8 +27,6 @@ const ChallengeDetails = () => {
     imageUrl,
     metric,
   } = data;
-
-  
 
 
   const handleJoin = async () => {

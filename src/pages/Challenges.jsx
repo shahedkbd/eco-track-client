@@ -117,7 +117,7 @@ const Challenges = () => {
         {/* Toggle button */}
         <button
           onClick={() => setShowFilter(!showFilter)}
-          className="btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg"
+          className="btn bg-[#7a9352] hover:bg-[#628727] text-white px-4 py-2 rounded-lg"
         >
           {showFilter ? "Hide Filters" : "Show Filters"}
         </button>
@@ -236,7 +236,7 @@ const Challenges = () => {
             <div className="flex justify-end gap-3 mt-4">
               <button
                 onClick={handleFilter}
-                className="btn btn-sm bg-green-500 hover:bg-green-600 text-white"
+                className="btn btn-sm bg-[#7a9352] hover:bg-[#628727] text-white"
               >
                 Apply Filter
               </button>
