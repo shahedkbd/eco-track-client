@@ -13,11 +13,14 @@ const MyActivities = () => {
       prev.map((a) => (a._id === _id ? { ...a, progress: value } : a))
     );
 
-    fetch(`http://localhost:3000/my-activities/progress/${_id}`, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ progress: value }),
-    })
+    fetch(
+      `https://eco-track-server-one-rho.vercel.app/my-activities/progress/${_id}`,
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ progress: value }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setActivities((prev) =>
@@ -33,7 +36,7 @@ const MyActivities = () => {
     );
     if (!confirm) return;
 
-    fetch(`http://localhost:3000/my-activities/${_id}`, {
+    fetch(`https://eco-track-server-one-rho.vercel.app/my-activities/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -48,7 +51,9 @@ const MyActivities = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-activities?email=${user.email}`)
+    fetch(
+      `https://eco-track-server-one-rho.vercel.app/my-activities?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         const updated = data.map((a) => ({
@@ -81,7 +86,12 @@ const MyActivities = () => {
           <tbody>
             {activities.length === 0 ? (
               <tr className="col-span-3">
-                <td  colSpan="6" className="text-center text-3xl py-20 text-gray-500 font-semibold">No activities yet</td>
+                <td
+                  colSpan="6"
+                  className="text-center text-3xl py-20 text-gray-500 font-semibold"
+                >
+                  No activities yet
+                </td>
               </tr>
             ) : (
               <>
@@ -94,9 +104,7 @@ const MyActivities = () => {
                             <img src={activity.image} alt="User Avatar" />
                           </div>
                         </div>
-                        <span className="max-sm:text-xs">
-                          {activity.title}
-                        </span>
+                        <span className="max-sm:text-xs">{activity.title}</span>
                       </div>
                     </td>
 
@@ -113,7 +121,16 @@ const MyActivities = () => {
 
                     <td>
                       <button className="uppercase ">
-                        {activity.progress === 100 ? <p className="badge badge-success badge-dash">Completed</p> : <p className="badge badge-dash badge-outline">{activity.type}</p>}</button>
+                        {activity.progress === 100 ? (
+                          <p className="badge badge-success badge-dash">
+                            Completed
+                          </p>
+                        ) : (
+                          <p className="badge badge-dash badge-outline">
+                            {activity.type}
+                          </p>
+                        )}
+                      </button>
                     </td>
 
                     <td>

@@ -86,7 +86,7 @@ const Challenges = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/challenges?${query.toString()}`
+        `https://eco-track-server-one-rho.vercel.app/challenges?${query.toString()}`
       );
       const data = await res.json();
       setChallenges(Array.isArray(data) ? data : []);
@@ -131,7 +131,8 @@ const Challenges = () => {
 
             <div className="flex flex-wrap gap-4 items-end ">
               {/* Category Dropdown */}
-              <div className="flex flex-col relative w-1/4 min-w-[150px]"
+              <div
+                className="flex flex-col relative w-1/4 min-w-[150px]"
                 ref={dropdownRef}
               >
                 <label className="text-sm font-medium mb-1 text-gray-600">

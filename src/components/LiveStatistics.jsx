@@ -1,14 +1,14 @@
 import React, { use } from "react";
 
-const PromiseData = fetch("http://localhost:3000/statistics").then((res) =>
-  res.json()
-);
+const PromiseData = fetch(
+  "https://eco-track-server-one-rho.vercel.app/statistics"
+).then((res) => res.json());
 const LiveStatistics = () => {
   const data = use(PromiseData);
   return (
-<div className="relative z-10">
-  <div
-    className="
+    <div className="relative z-10">
+      <div
+        className="
       rounded-2xl grid grid-cols-4 
       lg:grid-cols-4 md:grid-cols-2 max-sm:grid-cols-1
       text-center bg-[#7a9352]
@@ -22,7 +22,7 @@ const LiveStatistics = () => {
 
       gap-5 px-5
     "
-  >
+      >
         <div className="my-4 bg-white rounded p-3 px-1">
           <h3 className="font-bold text-sm md:text-base">TOTAL CO₂ SAVED</h3>
           <h2 className="text-4xl md:text-3xl sm:text-2xl font-bold text-[#7a9352]">

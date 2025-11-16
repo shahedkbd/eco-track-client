@@ -24,7 +24,7 @@ const Footer = () => {
       </nav>
       <aside>
         <p className="poppins">
-            © {new Date().getFullYear()} - All right reserved by EcoTrack
+          © {new Date().getFullYear()} - All right reserved by EcoTrack
         </p>
       </aside>
     </footer>

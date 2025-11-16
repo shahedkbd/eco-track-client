@@ -1,72 +1,71 @@
-import React, { use, useState } from 'react';
-import { AuthContext } from '../Context/AuthContext';
-import { Link, useLocation, useNavigate } from 'react-router';
-import toast from 'react-hot-toast';
+import React, { use, useState } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import { Link, useLocation, useNavigate } from "react-router";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-
 const Login = () => {
-    const {signinWithEmail, setUser, signinWithGoogle, setLoading} = use(AuthContext)
-    const [error, setError] = useState("")
-      const [showPassword, setShowPassword] = useState(false);
-    
-    const [success, setSuccess] = useState(false)
+  const { signinWithEmail, setUser, signinWithGoogle, setLoading } =
+    use(AuthContext);
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-    const navigate = useNavigate()
-    const location = useLocation()
+  const [success, setSuccess] = useState(false);
 
-    const handleGoogleLogin =() =>{
-        signinWithGoogle()
-        .then(res=>{
-            const user = res.user
-            console.log(user);
-            
-            setUser(user)
-            setSuccess(true)
-            navigate("/")
-            toast("Login Successful")
-        })
-        .catch(error=>{
-            const errorMessage = error.message
-            setError(errorMessage)
-            toast(errorMessage);
-        })
-    }
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const handleLogin =(e)=>{
-        e.preventDefault()
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+  const handleGoogleLogin = () => {
+    signinWithGoogle()
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
 
-        const from = location.state?.from || "/"; // fallback
+        setUser(user);
+        setSuccess(true);
+        navigate("/");
+        toast("Login Successful");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+        toast(errorMessage);
+      });
+  };
 
-        signinWithEmail(email, password)
-        .then(res=>{
-            const user = res.user
-            console.log(user);
-            
-            setUser(user)
-            setSuccess(true)
-            navigate(from, { replace: true });
-            e.target.reset()
-            toast("Login Successful")
-        })
-        .catch(error=>{
-            const errorMessage = error.message
-            setLoading(false)
-            setError(errorMessage)
-            toast(errorMessage)
-        })
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    }
+    const from = location.state?.from || "/"; // fallback
 
-    const handleTogglePasswordShow = (event) => {
+    signinWithEmail(email, password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+
+        setUser(user);
+        setSuccess(true);
+        navigate(from, { replace: true });
+        e.target.reset();
+        toast("Login Successful");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setLoading(false);
+        setError(errorMessage);
+        toast(errorMessage);
+      });
+  };
+
+  const handleTogglePasswordShow = (event) => {
     event.preventDefault();
     setShowPassword(!showPassword);
   };
 
-    return (
-        <div className="hero bg-[#7a9352] min-h-screen">
+  return (
+    <div className="hero bg-[#7a9352] min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <h1 className="text-3xl font-bold text-center mt-6 poppins text-[#7a9352]">
           Login to EcoTrack
@@ -83,31 +82,34 @@ const Login = () => {
               />
               <label className="label">Password</label>
               <div className="relative">
-                              <input
-                                type={showPassword ? "text" : "password"}
-                                name="password"
-                                className="input"
-                                placeholder="Password"
-                              />
-                              <button
-                                onClick={handleTogglePasswordShow}
-                                className="btn btn-xs top-2 right-5 absolute"
-                              >
-                                {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
-                              </button>
-                            </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="input"
+                  placeholder="Password"
+                />
+                <button
+                  onClick={handleTogglePasswordShow}
+                  className="btn btn-xs top-2 right-5 absolute"
+                >
+                  {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+                </button>
+              </div>
               <div>
-                <Link to="/forget-password" className="link link-hover">Forgot password?</Link>
+                <Link to="/forget-password" className="link link-hover">
+                  Forgot password?
+                </Link>
               </div>
               <button className="btn btn-neutral mt-4">Login</button>
             </fieldset>
           </form>
-          {
-            error && <p className="text-red-500 text-xs">{error}</p>
-          }
+          {error && <p className="text-red-500 text-xs">{error}</p>}
 
           {/* Google */}
-          <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5]">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn bg-white text-black border-[#e5e5e5]"
+          >
             <svg
               aria-label="Google logo"
               width="16"
@@ -137,11 +139,16 @@ const Login = () => {
             </svg>
             Login with Google
           </button>
-          <p className="roboto">Don't have an account? <span className="text-[#0049be] font-bold "><Link to="/register">Register</Link></span></p>
+          <p className="roboto">
+            Don't have an account?{" "}
+            <span className="text-[#0049be] font-bold ">
+              <Link to="/register">Register</Link>
+            </span>
+          </p>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Login;

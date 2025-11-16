@@ -57,7 +57,7 @@ const Register = () => {
 
         const newUser = { name, email, photourl };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://eco-track-server-one-rho.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -100,7 +100,7 @@ const Register = () => {
           image: result.user.photoURL,
         };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://eco-track-server-one-rho.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

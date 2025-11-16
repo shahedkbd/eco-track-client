@@ -3,27 +3,32 @@ import { BiUpvote } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 
 const TipsDataCard = ({ tipsData }) => {
-    console.log(tipsData);
-    const {title, content, category, author, authorName, upvotes, createdAt} = tipsData
-    
+  console.log(tipsData);
+  const { title, content, category, author, authorName, upvotes, createdAt } =
+    tipsData;
+
   return (
     <div className="card bg-base-100 shadow-sm">
       <div className="card-body">
         <div className="flex justify-between">
-            <p className="badge text-xs badge-dash justify-start max-w-fit">{category}</p>
-            <div className="flex items-center gap-1">
-                <BiUpvote />
-                <p><span>{upvotes}</span></p>
-            </div>
+          <p className="badge text-xs badge-dash line-clamp-1 justify-start max-w-fit">
+            {category}
+          </p>
+          <div className="flex items-center gap-1">
+            <BiUpvote />
+            <p>
+              <span>{upvotes}</span>
+            </p>
+          </div>
         </div>
         <h2 className="card-title font-bold h-15">{title}</h2>
         <p className="h-35">{content}</p>
         <p className="text-xs font-bold text-right">{createdAt}</p>
         <div className="divider"></div>
-        <p className="flex items-center gap-2 font-bold"><CgProfile /> {authorName}</p>
+        <p className="flex items-center gap-2 font-bold">
+          <CgProfile /> {authorName}
+        </p>
         <p className="font-bold">{author}</p>
-        
-        
       </div>
     </div>
   );

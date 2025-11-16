@@ -67,7 +67,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <img className="w-20" src={Logo} alt="logo" />
+        <Link to="/">
+          <img className="w-20" src={Logo} alt="logo" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -77,11 +79,16 @@ const Navbar = () => {
           <>
             {user ? (
               <div className="dropdown dropdown-hover dropdown-bottom dropdown-left">
-                <div tabIndex={0} role="button" className=" p-2 rounded-2xl bg-[#7a9352] hover:bg-[#628727] flex gap-1 items-center">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className=" p-2 rounded-2xl bg-[#7a9352] hover:bg-[#628727] flex gap-1 items-center"
+                >
                   <p className="badge max-sm:hidden">{user.displayName}</p>
                   <img
                     className="size-10 object-cover border-2 border-white rounded-full"
-                    src={user.photoURL} alt="User Photo"
+                    src={user.photoURL}
+                    alt="User Photo"
                   />
                 </div>
                 <ul
@@ -137,6 +144,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-

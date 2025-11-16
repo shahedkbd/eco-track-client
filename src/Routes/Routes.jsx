@@ -24,30 +24,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/challenges",
-        loader: () => fetch("http://localhost:3000/challenges"),
+        loader: () =>
+          fetch("https://eco-track-server-one-rho.vercel.app/challenges"),
         Component: Challenges,
       },
-      // {
-      //   path: "/challenges/:id",
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:3000/challenges/${params.id}`),
-      //   Component: ChallengeDetails,
-      //   errorElement: NotFound
-      // },
+
       {
-  path: "/challenges/:id",
-  loader: async ({ params }) => {
-    const res = await fetch(`http://localhost:3000/challenges/${params.id}`);
+        path: "/challenges/:id",
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `https://eco-track-server-one-rho.vercel.app/challenges/${params.id}`
+          );
 
-    if (!res.ok) {
-      throw new Response("Not Found", { status: 404 });
-    }
+          if (!res.ok) {
+            throw new Response("Not Found", { status: 404 });
+          }
 
-    return res.json();
-  },
-  element: <ChallengeDetails />,
-  errorElement: <NotFound />
-},
+          return res.json();
+        },
+        element: <ChallengeDetails />,
+        errorElement: <NotFound />,
+      },
       {
         path: "/challenge/add-challenge",
         element: (
@@ -86,7 +83,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "*",
-        Component: NotFound
+        Component: NotFound,
       },
     ],
   },

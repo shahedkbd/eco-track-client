@@ -23,10 +23,16 @@ const UpcomingEventCard = ({ event }) => {
         <div className="divider"></div>
         <p className="text-center font-bold">{createdAt}</p>
         <button className="btn btn-ghost hover:bg-white border-0 shadow-none">
-          Current Participants: <div className="badge badge-sm badge-secondary">{currentParticipants}</div>
+          Current Participants:{" "}
+          <div className="badge badge-sm badge-secondary">
+            {currentParticipants}
+          </div>
         </button>
         <button className="btn btn-ghost hover:bg-white border-0 shadow-none">
-          Max Participants: <div className="badge badge-soft badge-primary">{maxParticipants}</div>
+          Max Participants:{" "}
+          <div className="badge badge-soft badge-primary">
+            {maxParticipants}
+          </div>
         </button>
       </div>
     </div>
