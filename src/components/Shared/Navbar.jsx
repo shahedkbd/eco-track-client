@@ -40,7 +40,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 px-10 shadow-sm">
+    <div className="navbar bg-base-100 px-10 max-sm:px-2 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,12 +62,12 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
         </div>
-        <img className="w-20" src={Logo} alt="" />
+        <img className="w-20" src={Logo} alt="logo" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -78,10 +78,10 @@ const Navbar = () => {
             {user ? (
               <div className="dropdown dropdown-hover dropdown-bottom dropdown-left">
                 <div tabIndex={0} role="button" className=" p-2 rounded-2xl bg-[#7a9352] hover:bg-[#628727] flex gap-1 items-center">
-                  <p className="badge">{user.displayName}</p>
+                  <p className="badge max-sm:hidden">{user.displayName}</p>
                   <img
                     className="size-10 object-cover border-2 border-white rounded-full"
-                    src={user.photoURL}
+                    src={user.photoURL} alt="User Photo"
                   />
                 </div>
                 <ul

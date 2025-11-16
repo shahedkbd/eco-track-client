@@ -2,7 +2,6 @@ import React, { use, useEffect, useState } from "react";
 import { Link, useLoaderData, useRouteLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
-import NotFound from "./NotFound";
 
 const ChallengeDetails = () => {
   const { user } = use(AuthContext);

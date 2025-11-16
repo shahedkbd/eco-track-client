@@ -10,13 +10,30 @@ const UpcomingEvent = () => {
 
   return (
     <div className="py-15 bg-gray-100">
-        <h2 className="text-center text-4xl pb-5 poppins font-bold text-[#7a9352] hover:text-[#628727]">Upcoming Events</h2>
-      <div className='grid grid-cols-4 gap-3 py-3 justify-items-center w-11/12 mx-auto'>
-        {events.map((event) => (
-          <UpcomingEventCard key={event._id} event={event}></UpcomingEventCard>
-        ))}
-      </div>
-    </div>
+  <h2 className="text-center text-4xl pb-5 poppins font-bold text-[#7a9352] hover:text-[#628727]">
+    Upcoming Events
+  </h2>
+
+  <div
+    className="
+      grid 
+      grid-cols-4 
+      lg:grid-cols-4 
+      md:grid-cols-2 
+      max-sm:grid-cols-1
+      gap-3 
+      py-3 
+      justify-items-center 
+      w-11/12 
+      mx-auto
+    "
+  >
+    {events.map((event) => (
+      <UpcomingEventCard key={event._id} event={event} />
+    ))}
+  </div>
+</div>
+
   );
 };
 

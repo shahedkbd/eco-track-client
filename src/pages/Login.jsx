@@ -2,10 +2,14 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const Login = () => {
     const {signinWithEmail, setUser, signinWithGoogle, setLoading} = use(AuthContext)
     const [error, setError] = useState("")
+      const [showPassword, setShowPassword] = useState(false);
+    
     const [success, setSuccess] = useState(false)
 
     const navigate = useNavigate()
@@ -20,11 +24,12 @@ const Login = () => {
             setUser(user)
             setSuccess(true)
             navigate("/")
+            toast("Login Successful")
         })
         .catch(error=>{
             const errorMessage = error.message
             setError(errorMessage)
-            console.log(errorMessage);
+            toast(errorMessage);
         })
     }
 
@@ -54,6 +59,12 @@ const Login = () => {
         })
 
     }
+
+    const handleTogglePasswordShow = (event) => {
+    event.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
     return (
         <div className="hero bg-[#7a9352] min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -71,12 +82,20 @@ const Login = () => {
                 placeholder="Email"
               />
               <label className="label">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="input"
-                placeholder="Password"
-              />
+              <div className="relative">
+                              <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                className="input"
+                                placeholder="Password"
+                              />
+                              <button
+                                onClick={handleTogglePasswordShow}
+                                className="btn btn-xs top-2 right-5 absolute"
+                              >
+                                {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+                              </button>
+                            </div>
               <div>
                 <Link to="/forget-password" className="link link-hover">Forgot password?</Link>
               </div>

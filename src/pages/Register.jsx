@@ -92,6 +92,7 @@ const Register = () => {
         setUser(user);
         setSuccess(true);
         navigate("/");
+        toast("Account Creation Successful");
 
         const newUser = {
           name: result.user.displayName,
@@ -114,7 +115,7 @@ const Register = () => {
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
-        console.log(errorMessage);
+        toast(errorMessage);
       });
   };
   return (

@@ -94,7 +94,7 @@ const MyActivities = () => {
                             <img src={activity.image} alt="User Avatar" />
                           </div>
                         </div>
-                        <span className="badge badge-ghost badge-sm">
+                        <span className="max-sm:text-xs">
                           {activity.title}
                         </span>
                       </div>
