@@ -23,7 +23,7 @@ const Register = () => {
     const photourl = e.target.photourl.value;
     const password = e.target.password.value;
 
-    console.log(name, email, photourl, password);
+    // console.log(name, email, photourl, password);
 
     const passwordPattern =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -38,7 +38,7 @@ const Register = () => {
     registerWithEmail(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
 
         setUser(user);
         setSuccess(true);
@@ -66,7 +66,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("data after user save", data);
+            // console.log("data after user save", data);
           });
       })
       .catch((error) => {
@@ -74,7 +74,7 @@ const Register = () => {
         setError(errorMessage);
         toast(errorMessage);
         setLoading(false);
-        console.log(errorMessage);
+        // console.log(errorMessage);
       });
   };
 
@@ -87,7 +87,7 @@ const Register = () => {
     signinWithGoogle()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
 
         setUser(user);
         setSuccess(true);
@@ -109,7 +109,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("data after user save", data);
+            // console.log("data after user save", data);
           });
       })
       .catch((error) => {

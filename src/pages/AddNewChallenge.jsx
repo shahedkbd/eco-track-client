@@ -18,19 +18,19 @@ const AddNewChallenge = () => {
     const impactMetric = e.target.impactMetric.value;
     const impactMetricText = e.target.impactMetricText.value;
 
-    console.log(
-      title,
-      description,
-      category,
-      target,
-      img,
-      startingDate,
-      endingDate,
-      duration,
-      MetricPrefix,
-      impactMetric,
-      impactMetricText
-    );
+    // console.log(
+    //   title,
+    //   description,
+    //   category,
+    //   target,
+    //   img,
+    //   startingDate,
+    //   endingDate,
+    //   duration,
+    //   MetricPrefix,
+    //   impactMetric,
+    //   impactMetricText
+    // );
 
     const newChallenge = {
       title: title,
@@ -55,7 +55,7 @@ const AddNewChallenge = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after submission", data);
+        // console.log("after submission", data);
       });
   };
   return (

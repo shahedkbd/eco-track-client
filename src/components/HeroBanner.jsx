@@ -18,7 +18,7 @@ const heroPromise = fetch(
 
 export default function HeroBanner() {
   const banner = use(heroPromise);
-  console.log(banner);
+  // console.log(banner);
 
   return (
     <>

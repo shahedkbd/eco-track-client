@@ -19,7 +19,7 @@ const Login = () => {
     signinWithGoogle()
       .then((res) => {
         const user = res.user;
-        console.log(user);
+        // console.log(user);
 
         setUser(user);
         setSuccess(true);
@@ -43,7 +43,7 @@ const Login = () => {
     signinWithEmail(email, password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
+        // console.log(user);
 
         setUser(user);
         setSuccess(true);

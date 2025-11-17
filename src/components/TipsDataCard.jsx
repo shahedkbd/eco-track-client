@@ -3,7 +3,7 @@ import { BiUpvote } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 
 const TipsDataCard = ({ tipsData }) => {
-  console.log(tipsData);
+  // console.log(tipsData);
   const { title, content, category, author, authorName, upvotes, createdAt } =
     tipsData;
 

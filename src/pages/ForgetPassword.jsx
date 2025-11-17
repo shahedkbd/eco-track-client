@@ -8,7 +8,7 @@ const ForgetPassword = () => {
   const handleForgetPassword = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    console.log(email);
+    // console.log(email);
 
     resetPassword(email)
       .then(() => {
@@ -17,7 +17,7 @@ const ForgetPassword = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
   return (

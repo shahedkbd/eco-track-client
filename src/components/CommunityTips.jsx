@@ -7,7 +7,6 @@ const TipsPromise = fetch(
 ).then((res) => res.json());
 const CommunityTips = () => {
   const tips = use(TipsPromise);
-  console.log(tips);
 
   return (
     <div className="py-15">

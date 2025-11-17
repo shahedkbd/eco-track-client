@@ -6,7 +6,7 @@ const upcomingEventPromise = fetch(
 ).then((res) => res.json());
 const UpcomingEvent = () => {
   const events = use(upcomingEventPromise);
-  console.log(events);
+  // console.log(events);
 
   return (
     <div className="py-15 bg-gray-100">
