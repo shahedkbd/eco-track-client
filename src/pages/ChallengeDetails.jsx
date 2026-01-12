@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { Link, useLoaderData, useRouteLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 
@@ -70,7 +70,7 @@ const ChallengeDetails = () => {
   }, [_id, user?.email]);
 
   return (
-    <div className="card mx-30 lg:card-side bg-base-100 shadow-sm my-10">
+    <div className="card mx-30 max-sm:mx-3 lg:card-side bg-base-100 shadow-sm my-10">
       <figure>
         <img className="w-130 h-100 object-cover" src={imageUrl} alt="Album" />
       </figure>
