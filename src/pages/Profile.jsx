@@ -3,6 +3,8 @@ import { AuthContext } from "../Context/AuthContext";
 
 const Profile = () => {
   const { user } = use(AuthContext);
+  
+  
   return (
     <div className="py-5 w-11/12 mx-auto">
       <h2 className="text-center text-4xl pb-5 poppins font-bold text-[#7a9352] hover:text-[#628727]">

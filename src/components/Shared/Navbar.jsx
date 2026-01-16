@@ -1,15 +1,19 @@
-import React, { use } from "react";
+import React, { use, useContext } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../../assets/EcoTrack-Logo.png";
 import { DiEnvato } from "react-icons/di";
 import { AuthContext } from "../../Context/AuthContext";
 import { CgProfile } from "react-icons/cg";
+import { FaUserCircle } from "react-icons/fa";
+
 
 const Navbar = () => {
-  const { user, setUser, logout } = use(AuthContext);
+  const { user, role, userDetails, logout } = useContext(AuthContext);
+  
+  
   const handleLogout = () => {
     logout().then().catch();
-  };
+  };  
 
   const links = (
     <>
@@ -18,6 +22,14 @@ const Navbar = () => {
           Home
         </li>
       </NavLink>
+      {
+        role ==="admin" && <NavLink to="/dashboard">
+        <li className="m-3 text-xl font-bold poppins hover:text-[#7a9352] hover:scale-110 duration-300">
+          Dashboard
+        </li>
+      </NavLink>
+      }
+
       <NavLink to="/challenges">
         <li className="m-3 text-xl font-bold poppins hover:text-[#7a9352] hover:scale-110 duration-300">
           Challenges

@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Link, useNavigate } from "react-router";
 import { updateProfile } from "firebase/auth";
@@ -11,7 +11,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { registerWithEmail, signinWithGoogle, setUser, setLoading } =
-    use(AuthContext);
+    useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const Register = () => {
     const photourl = e.target.photourl.value;
     const password = e.target.password.value;
 
-    // console.log(name, email, photourl, password);
+    console.log(name, email, photourl, password);
 
     const passwordPattern =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -38,7 +38,7 @@ const Register = () => {
     registerWithEmail(email, password)
       .then((result) => {
         const user = result.user;
-        // console.log(user);
+        console.log("registration", user);
 
         setUser(user);
         setSuccess(true);
@@ -55,7 +55,12 @@ const Register = () => {
           .then(() => {})
           .catch();
 
-        const newUser = { name, email, photourl };
+        const newUser = {
+          name,
+          email,
+          photourl,
+          role: "user",
+        };
 
         fetch("https://eco-track-server-one-rho.vercel.app/users", {
           method: "POST",
@@ -66,7 +71,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log("data after user save", data);
+            console.log("data after user save", data);
           });
       })
       .catch((error) => {
@@ -97,7 +102,8 @@ const Register = () => {
         const newUser = {
           name: result.user.displayName,
           email: result.user.email,
-          image: result.user.photoURL,
+          photourl: result.user.photoURL,
+          role: "user",
         };
 
         fetch("https://eco-track-server-one-rho.vercel.app/users", {
@@ -109,7 +115,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log("data after user save", data);
+            console.log("data after user save", data);
           });
       })
       .catch((error) => {

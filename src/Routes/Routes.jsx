@@ -11,6 +11,12 @@ import ChallengeDetails from "../pages/ChallengeDetails";
 import AddNewChallenge from "../pages/AddNewChallenge";
 import ForgetPassword from "../pages/ForgetPassword";
 import NotFound from "../pages/NotFound";
+import AdminDashboard from "../Layout/AdminLayout";
+import AdminRoute from "./AdminRoute";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import AllUserActivityPage from "../pages/Dashboard/AllUserActivityPage";
+import AllChallengesPage from "../pages/Dashboard/AllChallengesPage";
+import AllUsersPage from "../pages/Dashboard/AllUsersPage";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +75,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
         path: "/login",
         Component: Login,
@@ -84,6 +91,36 @@ export const router = createBrowserRouter([
       {
         path: "*",
         Component: NotFound,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+
+    element: (
+      <PrivateRoute>
+        <AdminRoute>
+          <AdminDashboard></AdminDashboard>
+        </AdminRoute>
+      </PrivateRoute>
+    ),
+
+    children: [
+      {
+        path: "/dashboard",
+        Component: DashboardHome,
+      },
+      {
+        path: "/dashboard/alluseractivity",
+        Component: AllUserActivityPage,
+      },
+      {
+        path: "/dashboard/AllChallenges",
+        Component: AllChallengesPage,
+      },
+      {
+        path: "/dashboard/users",
+        Component: AllUsersPage,
       },
     ],
   },

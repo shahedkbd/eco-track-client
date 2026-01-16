@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const { signinWithEmail, setUser, signinWithGoogle, setLoading } =
+  const { signinWithEmail, user, signinWithGoogle, setLoading } =
     use(AuthContext);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -15,15 +15,21 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const from = location.state?.from || "/"; // fallback
+  if (user) {
+    navigate(from, { replace: true });
+  }
+
   const handleGoogleLogin = () => {
+    const from = location.state?.from || "/"; // fallback
     signinWithGoogle()
       .then((res) => {
         const user = res.user;
-        // console.log(user);
+        console.log(user);
 
-        setUser(user);
+        // setUser(user);
         setSuccess(true);
-        navigate("/");
+        navigate(from, { replace: true });
         toast("Login Successful");
       })
       .catch((error) => {
@@ -43,9 +49,9 @@ const Login = () => {
     signinWithEmail(email, password)
       .then((res) => {
         const user = res.user;
-        // console.log(user);
+        console.log(user);
 
-        setUser(user);
+        // setUser(userdata);
         setSuccess(true);
         navigate(from, { replace: true });
         e.target.reset();
